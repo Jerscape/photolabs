@@ -7,6 +7,11 @@ import PhotoList from 'components/PhotoList';
 import TopicList from 'components/TopicList';
 import TopNavigation from 'components/TopNavigationBar';
 import './App.scss';
+import HomeRoute from 'routes/HomeRoute';
+
+import photos from 'mocks/photos';
+
+console.log("photos element 1", photos)
 
 // const photos = [
 //   {
@@ -103,25 +108,31 @@ const App = () => {
 
   const [favouritedList, setFavouritedList] = useState([])
 
+    return(
+      <HomeRoute 
+        favouritedList={favouritedList}
+        setFavouritedList={setFavouritedList}
+      />
+    )
  
-  return(
-    <div className='App'>
-      <React.Fragment>
-      <TopNavigation
-        favouritedList={favouritedList}
-        setFavouritedList={setFavouritedList}
-      />
-      {/* <TopicList/>  */}
-      <PhotoList
+  // return(
+  //   <div className='App'>
+  //     <React.Fragment>
+  //     <TopNavigation
+  //       favouritedList={favouritedList}
+  //         setFavouritedList={setFavouritedList}
+  //     />
+  //     {/* <TopicList/>  */}
+  //     <PhotoList
 
-        //the below variables are for the fav icon functionality
-        favouritedList={favouritedList}
-        setFavouritedList={setFavouritedList}
-      />
-      </React.Fragment>
+  //       //the below variables are for the fav icon functionality
+  //       favouritedList={favouritedList}
+  //       setFavouritedList={setFavouritedList}
+  //     />
+  //     </React.Fragment>
     
-    </div>
-  )
+  //   </div>
+  // )
 
   //JUSt topic list
   // return(
