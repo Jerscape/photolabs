@@ -10,8 +10,8 @@ const PhotoListItem = (props) => {
   // console.log("PROPS: ", props)
   const { id, favouriteList, setFavouritedList } = props;
   /* Insert React */
-  console.log("props from within photolist:", props)
-  console.log("Photoitems favourite list: ", favouriteList)
+  // console.log("props from within photolist:", props)
+  // console.log("Photoitems favourite list: ", favouriteList)
   return (
     <div className="photo-list__item"onClick={()=>{
       props.toggleHandler(id)

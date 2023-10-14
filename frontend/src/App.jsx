@@ -31,6 +31,7 @@ const App = () => {
       />
       {modal && <PhotoDetailsModal 
          photos={photos}
+         //the value of model should be the photo id
          modal={modal}
          setModal={setModal}
       />}

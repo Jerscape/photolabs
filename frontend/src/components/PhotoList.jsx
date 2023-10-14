@@ -7,7 +7,8 @@ import photos from "mocks/photos";
 console.log("id? ", photos[1].id)
 
 const PhotoList = (props) => {
-const toggleHandler = (id) => {
+
+  const toggleHandler = (id) => {
 
   props.setModal(id)
   console.log("toggle handler triggered")
@@ -17,7 +18,7 @@ const toggleHandler = (id) => {
   const photoItems = photos.map((item) =>{
 
     const [urls, user] = photos
-    console.log("PHOTOLIST PROPS:", props)
+    // console.log("PHOTOLIST PROPS:", props)
     return(
       <li key={item.id}>
       <PhotoListItem
