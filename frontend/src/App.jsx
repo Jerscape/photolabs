@@ -6,142 +6,41 @@ import PhotoListItem from './components/PhotoListItem';
 import PhotoList from 'components/PhotoList';
 import TopicList from 'components/TopicList';
 import TopNavigation from 'components/TopNavigationBar';
+import PhotoDetailsModal from 'routes/PhotoDetailsModal';
 import './App.scss';
 import HomeRoute from 'routes/HomeRoute';
 
 import photos from 'mocks/photos';
 
-console.log("photos element 1", photos)
+console.log("photos", photos)
+console.log("photos element 1", photos[1])
+console.log("similar photos", photos[1].similar_photos)
 
-// const photos = [
-//   {
-//     id: "1",
-//     location: {
-//       city: "Montreal",
-//       country: "Canada",
-//     },
-//     imageSource: `${process.env.PUBLIC_URL}/Image-1-Regular.jpeg`,
-//     username: "Joe Example",
-//     profile: `${process.env.PUBLIC_URL}/profile-1.jpg`,
-//   },
-//   {
-//     id: "2",
-//     location: {
-//       city: "Toronto",
-//       country: "Canada",
-//     },
-//     imageSource: `${process.env.PUBLIC_URL}/Image-1-Regular.jpeg`,
-//     username: "Davey Example",
-//     profile: `${process.env.PUBLIC_URL}/profile-1.jpg`,
-//   },
-//   {
-//     id: "3",
-//     location: {
-//       city: "Winnipeg",
-//       country: "Canada",
-//     },
-//     imageSource: `${process.env.PUBLIC_URL}/Image-1-Regular.jpeg`,
-//     username: "Heather Example",
-//     profile: `${process.env.PUBLIC_URL}/profile-1.jpg`,
-//   }
-// ]
 
-//////
-const sampleDataForPhotoList = [
-  {
-    id: "1",
-    location: {
-      city: "Montreal",
-      country: "Canada",
-    },
-    urls: {
-      full: `${process.env.PUBLIC_URL}/Image-1-Full.jpeg`,
-      regular: `${process.env.PUBLIC_URL}/Image-1-Regular.jpeg`,
-    },
-    user: {
-      id: "1",
-      username: "exampleuser",
-      name: "Joe Example",
-      profile: `${process.env.PUBLIC_URL}/profile-1.jpg`,
-    },
-  },
-  {
-    id: "2",
-    location: {
-      city: "Toronto",
-      country: "Canada",
-    },
-    urls: {
-      full: `${process.env.PUBLIC_URL}/Image-2-Full.jpeg`,
-      regular: `${process.env.PUBLIC_URL}/Image-2-Regular.jpeg`,
-    },
-    user: {
-      id: "2",
-      username: "exampleuser",
-      name: "Joe Example",
-      profile: `${process.env.PUBLIC_URL}/profile-1.jpg`,
-    },
-  },
-  {
-    id: "3",
-    location: {
-      city: "Ottawa",
-      country: "Canada",
-    },
-    urls: {
-      full: `${process.env.PUBLIC_URL}/Image-3-Full.jpeg`,
-      regular: `${process.env.PUBLIC_URL}/Image-3-Regular.jpeg`,
-    },
-    user: {
-      id: "3",
-      username: "exampleuser",
-      name: "Joe Example",
-      profile: `${process.env.PUBLIC_URL}/profile-1.jpg`,
-    },
-  },
-];
-
-///////
 
 // Note: Rendering a single component to build components in isolation
 const App = () => {
-
-  const [favouritedList, setFavouritedList] = useState([])
-
+  //any number besides 0 ie an id number will make modal === true
+  const [modal, setModal] = useState(0)
+  //define modal state here 
     return(
-      <HomeRoute 
-        favouritedList={favouritedList}
-        setFavouritedList={setFavouritedList}
+    <>
+      <HomeRoute
+        modal={modal}
+        setModal={setModal}
       />
+      {modal && <PhotoDetailsModal 
+         photos={photos}
+         modal={modal}
+         setModal={setModal}
+      />}
+
+    </>
     )
  
-  // return(
-  //   <div className='App'>
-  //     <React.Fragment>
-  //     <TopNavigation
-  //       favouritedList={favouritedList}
-  //         setFavouritedList={setFavouritedList}
-  //     />
-  //     {/* <TopicList/>  */}
-  //     <PhotoList
 
-  //       //the below variables are for the fav icon functionality
-  //       favouritedList={favouritedList}
-  //       setFavouritedList={setFavouritedList}
-  //     />
-  //     </React.Fragment>
-    
-  //   </div>
-  // )
 
-  //JUSt topic list
-  // return(
-  //   <div className='App'>
-   
-  //     <TopicList/> 
-    
-  //   </div>
-  // )
+
 
 };
 

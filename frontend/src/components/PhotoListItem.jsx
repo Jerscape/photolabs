@@ -13,7 +13,10 @@ const PhotoListItem = (props) => {
   console.log("props from within photolist:", props)
   console.log("Photoitems favourite list: ", favouriteList)
   return (
-    <div className="photo-list__item">
+    <div className="photo-list__item"onClick={()=>{
+      props.toggleHandler(id)
+      console.log("photo clicked")
+    }}>
     <div>
       <img className="photo-list__image" src={props.imageSource} ></img>
 
@@ -22,7 +25,7 @@ const PhotoListItem = (props) => {
         favouriteList={favouriteList}
         setFavouritedList={setFavouritedList}
       />
-
+    {/* console.log('toggle handler from within photo list item:', props.toggleHandler) */}
     </div>
     {/* <img className="photo-list__image" src={props.imageSource} ></img> */}
     <img className="photo-list__user-profile" src={props.profile}></img>

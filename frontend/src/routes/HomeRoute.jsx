@@ -1,19 +1,23 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 import '../styles/HomeRoute.scss';
 import PhotoList from 'components/PhotoList';
 import TopNavigation from 'components/TopNavigationBar';
 
+
+
 const HomeRoute = (props) => {
+  const [favouritedList, setFavouritedList] = useState([])
   return (
     <div className="home-route" >
       <TopNavigation
-        favouritedList={props.favouritedList}
-        setFavouritedList={props.setFavouritedList}
+        favouritedList={favouritedList}
+        setFavouritedList={setFavouritedList}
       />
       <PhotoList 
-         favouritedList={props.favouritedList}
-         setFavouritedList={props.setFavouritedList}
+         favouritedList={favouritedList}
+         setFavouritedList={setFavouritedList}
+         setModal={props.setModal}
       
       />
     </div>
