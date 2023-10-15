@@ -22,18 +22,24 @@ console.log("similar photos", photos[1].similar_photos)
 const App = () => {
   //any number besides 0 ie an id number will make modal === true
   const [modal, setModal] = useState(0)
+  const [favouritedList, setFavouritedList] = useState([])
   //define modal state here 
     return(
     <>
       <HomeRoute
         modal={modal}
         setModal={setModal}
+        favouritedList={favouritedList}
+        setFavouritedList={setFavouritedList}
       />
       {modal && <PhotoDetailsModal 
+        //how to access favourites list
          photos={photos}
          //the value of model should be the photo id
          modal={modal}
          setModal={setModal}
+         favouritedList={favouritedList}
+         setFavouritedList={setFavouritedList}
       />}
 
     </>

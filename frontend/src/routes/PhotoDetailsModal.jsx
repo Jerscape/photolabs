@@ -1,54 +1,56 @@
 import React from 'react';
 
-import '../styles/PhotoDetailsModal.scss'
+import '../styles/PhotoDetailsModal.scss';
 import closeSymbol from '../assets/closeSymbol.svg';
 
 import PhotoList from 'components/PhotoList';
+import PhotoListItem from 'components/PhotoListItem';
+
 
 const PhotoDetailsModal = (props) => {
-  const closeHandler=()=>{
-  props.setModal(0)
+  const closeHandler = () => {
+    props.setModal(0);
 
-  }
+  };
 
   //note, because they are stored in an array, photo 1 is element 0
   //hense photoID 1 - 1 = 0 in order to access it
-  const photoID = props.modal -1
-  console.log(photoID)
-  // //id is being received as per the first consolde log  
-  // console.log("modal value: ", props.modal)
-  // //this is console logging out the photo object
-  // console.log("photo from modal:", props.photos[props.modal])
-  // const {location, urls, similarPhotos} = props.photos[props.modal]
-  // console.log("location:", location)
-  // console.log('urls: ', urls)
-  // // console.log("similar photos: ", photoID.similar_Photos)
-  // console.log("similar photos? :", props.photos[0].similar_photos)
+  const photoID = props.modal - 1;
+  console.log(photoID);
   
   //this is a object of objects
-  const similarPhotos = props.photos[photoID].similar_photos
-  console.log(`similarphotos by id: ${photoID}`, similarPhotos)
-
-  
-
+  const similarPhotos = props.photos[photoID].similar_photos;
+  console.log(`similarphotos by id: ${photoID}`, similarPhotos);
+  //convert similarPhotos to an array? pass as prop to photo list...
+  //refactor photo list to accept a prop (currently directly accepting photos via import)
+  const photos = Object.values(similarPhotos);
+  console.log("similar photos as value of photos: ", photos)
   return (
-   
+
     <div className="photo-details-modal">
       <button className="photo-details-modal__close-button">
-        <img src={closeSymbol} alt="close symbol" 
-        onClick={()=>{
-          closeHandler()
-          
-        }}
+        <img src={closeSymbol} alt="close symbol"
+          onClick={() => {
+            closeHandler();
+
+          }}
         //insert on click
         />
       </button>
+      <PhotoListItem
+        //id={props.modal}
+        imageSource={props.photos.imageSource}
+        favouritedList={props.favouritedList}
+        setFavouritedList={props.setFavouritedList}
+      />
       {/* add the data here from the photo */}
       {/* <PhotoList
-
+        //id={props.modal}
+        setModal={props.setModal}
+        photos={photos}
       /> */}
     </div>
-  )
+  );
 };
 
 export default PhotoDetailsModal;

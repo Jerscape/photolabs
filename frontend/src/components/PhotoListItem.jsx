@@ -8,10 +8,11 @@ import PhotoFavButton from "./PhotoFavButton";
 
 const PhotoListItem = (props) => {
   // console.log("PROPS: ", props)
-  const { id, favouriteList, setFavouritedList } = props;
+  const { id, favouritedList, setFavouritedList } = props;
   /* Insert React */
   // console.log("props from within photolist:", props)
-  // console.log("Photoitems favourite list: ", favouriteList)
+  console.log("Photoitems favourite list: ", favouritedList)
+  console.log("id from photolist item", id)
   return (
     <div className="photo-list__item"onClick={()=>{
       props.toggleHandler(id)
@@ -22,7 +23,7 @@ const PhotoListItem = (props) => {
 
       <PhotoFavButton
         id={id}
-        favouriteList={favouriteList}
+        favouritedList={favouritedList}
         setFavouritedList={setFavouritedList}
       />
     {/* console.log('toggle handler from within photo list item:', props.toggleHandler) */}
