@@ -14,14 +14,12 @@ const PhotoDetailsModal = (props) => {
   };
 
   //note, because they are stored in an array, photo 1 is element 0
-  //hense photoID 1 - 1 = 0 in order to access it
-  // const photoID = props.modal
-  // const modalPhoto = props.photos[props.modal]
-  // console.log("element from photo details:", photoID);
-  const photoID = props.modal;
+  //hence photoID 1 - 1 = 0 in order to access it
+
+  const photoID = props.modal-1;
   //this is a object of objects
   const similarPhotos = props.photos[photoID].similar_photos;
-  console.log(`similarphotos by id: ${photoID}`, similarPhotos);
+  //console.log(`similarphotos by id: ${photoID}`, similarPhotos);
   //convert similarPhotos to an array? pass as prop to photo list...
   //refactor photo list to accept a prop (currently directly accepting photos via import)
   const similarPhotosList = Object.values(similarPhotos);
@@ -29,7 +27,7 @@ const PhotoDetailsModal = (props) => {
 
 
 
-  const modalPhoto = props.photos[props.modal];
+  const modalPhoto = props.photos[photoID];
   // console.log("element from photo details:", photoID);
   console.log("modal Photo", modalPhoto);
   const modalPhotoImgSource = modalPhoto.urls.regular;
@@ -60,7 +58,7 @@ const PhotoDetailsModal = (props) => {
       <PhotoListItem
         //the photo item id is set by the modal state
         //think of how to pass the SPECIFIC photo info to this component here
-        id={props.modal}
+        //id={props.modal}
         imageSource={modalPhotoImgSource}
         favouritedList={props.favouritedList}
         setFavouritedList={props.setFavouritedList}
@@ -73,11 +71,14 @@ const PhotoDetailsModal = (props) => {
 
       />
       {/* add the data here from the photo */}
-      {/* <PhotoList
+      <PhotoList
         //id={props.modal}
+        favouritedList={props.favouritedList}
+        setFavouritedList={props.setFavouritedList}
         setModal={props.setModal}
+        modal={props.modal}
         photos={similarPhotosList}
-      /> */}
+      />
     </div>
   );
 };
