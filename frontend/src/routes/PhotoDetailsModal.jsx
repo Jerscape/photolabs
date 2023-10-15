@@ -18,7 +18,7 @@ const PhotoDetailsModal = (props) => {
   // const photoID = props.modal
   // const modalPhoto = props.photos[props.modal]
   // console.log("element from photo details:", photoID);
-  const photoID = props.modal
+  const photoID = props.modal;
   //this is a object of objects
   const similarPhotos = props.photos[photoID].similar_photos;
   console.log(`similarphotos by id: ${photoID}`, similarPhotos);
@@ -28,14 +28,21 @@ const PhotoDetailsModal = (props) => {
   //console.log("similar photos as value of photos: ", photos)
 
 
- 
-  const modalPhoto = props.photos[props.modal]
+
+  const modalPhoto = props.photos[props.modal];
   // console.log("element from photo details:", photoID);
-  // console.log("modal Photo", modalPhoto)
-  const modalPhotoImgSource = modalPhoto.urls.regular
-//  console.log("modalPhotoImgSource", modalPhotoImgSource)
-
-
+  console.log("modal Photo", modalPhoto);
+  const modalPhotoImgSource = modalPhoto.urls.regular;
+  //  console.log("modalPhotoImgSource", modalPhotoImgSource)
+  // const modalUserName = modalPhoto.
+  const { location, user } = modalPhoto;
+  // console.log("location:", location, "user: ", user)
+  const modalPhotoCity = location.city;
+  const modalPhotoCountry = location.country;
+  const modalPhotoName = user.name;
+  const modalPhotoUserName = user.username;
+  const modalPhotoProfile = user.profile;
+  console.log("modal photo display details: ", modalPhotoCity, "|", modalPhotoCountry, "|", modalPhotoUserName, "|", modalPhotoName, "|", modalPhotoProfile);
 
 
   return (
@@ -57,6 +64,11 @@ const PhotoDetailsModal = (props) => {
         imageSource={modalPhotoImgSource}
         favouritedList={props.favouritedList}
         setFavouritedList={props.setFavouritedList}
+        username={modalPhotoUserName}
+        name={modalPhotoName}
+        profile={modalPhotoProfile}
+        city={modalPhotoCity}
+        country={modalPhotoCountry}
 
 
       />
