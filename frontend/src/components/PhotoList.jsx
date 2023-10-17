@@ -2,25 +2,31 @@ import React from "react";
 
 import "../styles/PhotoList.scss";
 import PhotoListItem from "./PhotoListItem";
+import useApplicationData from "hooks/useApplicationData";
 //import photos from "mocks/photos";
 
 //console.log("id? ", photos[1].id)
 
 const PhotoList = (props) => {
+  // console.log('PHOTOLIST photoisfavourited:', props.photoIsFavorited)
+  //const {modal, setModal, toggleHandler} = useApplicationData()
 
-  const toggleHandler = (id) => {
+//   const toggleHandler = (id) => {
 
-  props.setModal(id)
-  console.log("toggle handler triggered")
+//   setModal(id)
+//   console.log("Id toggle handler",id)
+//   console.log("toggle handler triggered")
 
-}
+// }
+  //console.log("PHOTO LIST toggle handler: ", props.toggleHandler)
+
   const photos = props.photos
 
   const photoItems = photos.map((item) =>{
 
     const [urls, user] = photos
    
-    console.log("PHOTOLIST PROPS:", props)
+    // console.log("PHOTOLIST PROPS:", props)
     return(
       <li key={item.id}>
       <PhotoListItem
@@ -32,6 +38,8 @@ const PhotoList = (props) => {
       id={item.id}
       favouritedList={props.favouritedList}
       setFavouritedList={props.setFavouritedList}
+      photoIsFavorited={props.photoIsFavorited}
+      // setPhotoIsFavourited={props.setPhotoIsFavourited}
      
       imageSource={item.urls.regular}
 
@@ -41,8 +49,9 @@ const PhotoList = (props) => {
 
       city={item.location.city}
       country={item.location.country}
-
-      toggleHandler={toggleHandler}
+      
+      clickFavoritePhoto={props.clickFavoritePhoto}
+      toggleHandler={props.toggleHandler}
 
       
       />

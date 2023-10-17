@@ -5,80 +5,88 @@ import closeSymbol from '../assets/closeSymbol.svg';
 
 import PhotoList from 'components/PhotoList';
 import PhotoListItem from 'components/PhotoListItem';
+import PhotoFavButton from 'components/PhotoFavButton'
+import useApplicationData from 'hooks/useApplicationData';
 
 
 const PhotoDetailsModal = (props) => {
-  const closeHandler = () => {
-    props.setModal(0);
 
-  };
+  
+  //const {modal, setModal, closeHandler, toggleHandler, clickFavoritePhoto, photoIsFavorited, setPhotoIsFavourited} = props;
 
-  //note, because they are stored in an array, photo 1 is element 0
-  //hence photoID 1 - 1 = 0 in order to access it
 
-  const photoID = props.modal-1;
+  const photoID = props.modal;
   //this is a object of objects
   const similarPhotos = props.photos[photoID].similar_photos;
-  //console.log(`similarphotos by id: ${photoID}`, similarPhotos);
-  //convert similarPhotos to an array? pass as prop to photo list...
-  //refactor photo list to accept a prop (currently directly accepting photos via import)
   const similarPhotosList = Object.values(similarPhotos);
-  //console.log("similar photos as value of photos: ", photos)
-
-
 
   const modalPhoto = props.photos[photoID];
-  // console.log("element from photo details:", photoID);
-  console.log("modal Photo", modalPhoto);
   const modalPhotoImgSource = modalPhoto.urls.regular;
-  //  console.log("modalPhotoImgSource", modalPhotoImgSource)
-  // const modalUserName = modalPhoto.
+
   const { location, user } = modalPhoto;
-  // console.log("location:", location, "user: ", user)
   const modalPhotoCity = location.city;
   const modalPhotoCountry = location.country;
   const modalPhotoName = user.name;
   const modalPhotoUserName = user.username;
   const modalPhotoProfile = user.profile;
-  console.log("modal photo display details: ", modalPhotoCity, "|", modalPhotoCountry, "|", modalPhotoUserName, "|", modalPhotoName, "|", modalPhotoProfile);
-
-
+  
+  console.log("modal details", props.modal)
   return (
 
     <div className="photo-details-modal">
       <button className="photo-details-modal__close-button">
         <img src={closeSymbol} alt="close symbol"
           onClick={() => {
-            closeHandler();
+            console.log("close button clicked")
+            props.closeHandler();
 
           }}
         //insert on click
         />
       </button>
-      <PhotoListItem
-        //the photo item id is set by the modal state
-        //think of how to pass the SPECIFIC photo info to this component here
-        //id={props.modal}
-        imageSource={modalPhotoImgSource}
-        favouritedList={props.favouritedList}
-        setFavouritedList={props.setFavouritedList}
-        username={modalPhotoUserName}
-        name={modalPhotoName}
-        profile={modalPhotoProfile}
-        city={modalPhotoCity}
-        country={modalPhotoCountry}
+      <div className={'photo-details-modal__images'}>
+        <PhotoFavButton
+           id={photoID}
+           favouritedList={props.favouritedList}
+           setFavouritedList={props.setFavoritedList}
+           photoIsFavourited={props.photoIsFavorited}
+          //  setPhotoIsFavourited={props.setPhotoIsFavourited}
+           clickFavoritePhoto={props.clickFavoritePhoto}
+        />
+       
+        <img src={modalPhotoImgSource} className={'photo-details-modal__image'} />
+        <div className={'photo-details-modal__photographer-details'}>
 
+          <img src={modalPhotoProfile} className={'photo-details-modal__photographer-profile'} />
+          <div className={'photo-details-modal__photographer-info'}>
+            {modalPhotoUserName}
+            <div className={'photo-details-modal_photographer-location'}>
+              {modalPhotoCity}, {modalPhotoCountry}
+            </div>
+          </div>
+        </div>
+        <div className="photo-details-modal__header">
+          <span>Similar Photos</span>
 
-      />
-      {/* add the data here from the photo */}
-      <PhotoList
-        //id={props.modal}
-        favouritedList={props.favouritedList}
-        setFavouritedList={props.setFavouritedList}
-        setModal={props.setModal}
-        modal={props.modal}
-        photos={similarPhotosList}
-      />
+        </div>
+
+        <div className={'photo-details-modal__images'}>
+          <PhotoList
+            favouritedList={props.favouritedList}
+            setFavouritedList={props.setFavouritedList}
+            setModal={props.setModal}
+            modal={props.modal}
+            photos={similarPhotosList}
+            photoIsFavorited={props.photoIsFavorited}
+            // setPhotoIsFavourited={props.setPhotoIsFavourited}
+
+            clickFavoritePhoto={props.clickFavoritePhoto}
+            toggleHandler={props.toggleHandler}
+          />
+
+        </div>
+      </div>
+
     </div>
   );
 };

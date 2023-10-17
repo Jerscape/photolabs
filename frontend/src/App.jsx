@@ -10,20 +10,17 @@ import PhotoDetailsModal from 'routes/PhotoDetailsModal';
 import './App.scss';
 import HomeRoute from 'routes/HomeRoute';
 
-import photos from 'mocks/photos';
-
-console.log("photos", photos)
-console.log("photos element 1", photos[1])
-console.log("similar photos", photos[1].similar_photos)
-
+//import photos from 'mocks/photos';
+import useApplicationData from 'hooks/useApplicationData';
 
 
 // Note: Rendering a single component to build components in isolation
 const App = () => {
   //any number besides 0 ie an id number will make modal === true
-  const [modal, setModal] = useState(0)
-  const [favouritedList, setFavouritedList] = useState([])
-  //define modal state here 
+  const {modal, setModal, favouritedList, setFavouritedList, photoIsFavorited, closeHandler, clickFavoritePhoto, toggleHandler, photoData} = useApplicationData()
+// console.log("APP, photo is favourited", photoIsFavorited)
+
+    console.log("APP PHOTOS: ", photoData)
     return(
     <>
       <HomeRoute
@@ -31,15 +28,28 @@ const App = () => {
         setModal={setModal}
         favouritedList={favouritedList}
         setFavouritedList={setFavouritedList}
+        photoIsFavorited={photoIsFavorited}
+        // setPhotoIsFavourited={setPhotoIsFavourited}
+        clickFavoritePhoto={clickFavoritePhoto}
+        toggleHandler={toggleHandler}
+        closeHandler={closeHandler}
+        photos={photoData}
       />
       {modal && <PhotoDetailsModal 
         //how to access favourites list
-         photos={photos}
+         photos={photoData}
          //the value of model should be the photo id
          modal={modal}
          setModal={setModal}
          favouritedList={favouritedList}
          setFavouritedList={setFavouritedList}
+         photoIsFavorited={photoIsFavorited}
+        //  setPhotoIsFavourited={setPhotoIsFavourited}
+        //  photoIsFavourited={photoIsFavourited}
+        //  setPhotoIsFavourited={setPhotoIsFavourited}
+         clickFavoritePhoto={clickFavoritePhoto}
+         toggleHandler={toggleHandler}
+         closeHandler={closeHandler}
       />}
 
     </>

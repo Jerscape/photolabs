@@ -1,15 +1,45 @@
+// .fav-badge {
+//   position: relative;
+// }
+
+
+// .fav-badge__count { 
+// background-color: rgb(0, 0, 0);
+// width: 20px;
+// height: 20px;
+//   border-radius: 99px;
+//   position: absolute;
+//   top: 0%;
+//   right: 0%;
+//   left: 70%;
+//   bottom: 60%;
+
+//   span {
+//     text-align: center;
+//     color: white;
+//     width: 100%;
+//     font-weight: 500;
+//     position: absolute;
+//     font-size: 16px;
+//   }
+// }
+
+
 .fav-badge {
   position: relative;
+  display: flex; /* Add this to enable flex layout */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
 }
 
-.fav-badge__count { 
-background-color: rgb(0, 0, 0);
-width: 20px;
-height: 20px;
+.fav-badge__count {
+  background-color: rgb(0, 0, 0);
+  width: 20px;
+  height: 20px;
   border-radius: 99px;
   position: absolute;
-  top: 0%;
-  right: 0%;
+  top: 0;
+  right: 0;
   left: 70%;
   bottom: 60%;
 
@@ -22,3 +52,7 @@ height: 20px;
     font-size: 16px;
   }
 }
+
+
+
+
