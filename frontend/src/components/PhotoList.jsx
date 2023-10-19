@@ -2,7 +2,7 @@ import React from "react";
 
 import "../styles/PhotoList.scss";
 import PhotoListItem from "./PhotoListItem";
-import useApplicationData from "hooks/useApplicationData";
+//import useApplicationData from "hooks/useApplicationData";
 //import photos from "mocks/photos";
 
 //console.log("id? ", photos[1].id)
@@ -24,17 +24,19 @@ const PhotoList = (props) => {
 
   const photoItems = photos.map((item) =>{
 
-    const [urls, user] = photos
+    //const [urls, user] = photos
+    //console.log("Logging item.id from map", item.id)//(seems to be pulling the correct id)
    
     // console.log("PHOTOLIST PROPS:", props)
     return(
       <li key={item.id}>
       <PhotoListItem
       
-      key={item.id}
+      //key={item.id}
       //I think this is breaking it because when I click on a photo
       //it is set up to save state (but in photolist it sets id via interatino
       //through the array)
+      
       id={item.id}
       favouritedList={props.favouritedList}
       setFavouritedList={props.setFavouritedList}
@@ -52,6 +54,7 @@ const PhotoList = (props) => {
       
       clickFavoritePhoto={props.clickFavoritePhoto}
       toggleHandler={props.toggleHandler}
+      item={item}
 
       
       />

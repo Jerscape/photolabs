@@ -9,12 +9,12 @@ import PhotoFavButton from "./PhotoFavButton";
 
 const PhotoListItem = (props) => {
   // console.log("PROPS: ", props)
-  const { id, favouritedList, setFavouritedList, photoIsFavorited, toggleHandler, clickFavoritePhoto} = props;
+  const { id, item, favouritedList, setFavouritedList, photoIsFavorited, toggleHandler, clickFavoritePhoto} = props;
   //console.log("PHOTOLIST ITEM photo is favourited: ", photoIsFavorited)
   return (
     <div className={"photo-list__item"} onClick={()=>{
-
-      props.toggleHandler(id)
+      console.log("id in toggle handler", id) //it's returning the element no the props.id when I click...what is goin gon
+      props.toggleHandler(item)
       console.log("PHOTO CLICKED")
     }}>
     <div>

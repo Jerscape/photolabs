@@ -17,10 +17,10 @@ import useApplicationData from 'hooks/useApplicationData';
 // Note: Rendering a single component to build components in isolation
 const App = () => {
   //any number besides 0 ie an id number will make modal === true
-  const {modal, setModal, favouritedList, setFavouritedList, photoIsFavorited, closeHandler, clickFavoritePhoto, toggleHandler, photoData} = useApplicationData()
+  const {modal, photo, setModal, favouritedList, setFavouritedList, photoIsFavorited, closeHandler, clickFavoritePhoto, toggleHandler, photoData} = useApplicationData()
 // console.log("APP, photo is favourited", photoIsFavorited)
-
-    console.log("APP PHOTOS: ", photoData)
+    console.log("modal from app:", modal)
+    //console.log("APP PHOTOS: ", photoData)
     return(
     <>
       <HomeRoute
@@ -40,6 +40,7 @@ const App = () => {
          photos={photoData}
          //the value of model should be the photo id
          modal={modal}
+         photo={photo} //whole photo object
          setModal={setModal}
          favouritedList={favouritedList}
          setFavouritedList={setFavouritedList}

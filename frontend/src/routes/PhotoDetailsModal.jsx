@@ -16,11 +16,20 @@ const PhotoDetailsModal = (props) => {
 
 
   const photoID = props.modal;
+  console.log(props.modal)
   //this is a object of objects
-  const similarPhotos = props.photos[photoID].similar_photos;
-  const similarPhotosList = Object.values(similarPhotos);
+  const similarPhotos = props.photo.similar_photos;
+  // const similarPhotos = props.photos[photoID].similar_photos;
+  //const similarPhotosList = Object.values(similarPhotos);
+ const updatedSimilarPhotos = similarPhotos.map((item) => item.similar_photos = similarPhotos)
 
-  const modalPhoto = props.photos[photoID];
+  //console.log("PHOTOD_DETAIL_MODAL UPDATE Similar photos:", updatedSimilarPhotos)
+  console.log("PHOTOD_DETAIL_MODAL UPDATE Similar photos:", similarPhotos)
+
+
+
+
+  const modalPhoto = props.photo;
   const modalPhotoImgSource = modalPhoto.urls.regular;
 
   const { location, user } = modalPhoto;
@@ -30,7 +39,8 @@ const PhotoDetailsModal = (props) => {
   const modalPhotoUserName = user.username;
   const modalPhotoProfile = user.profile;
   
-  console.log("modal details", props.modal)
+  console.log("modal details", props.modal) //this is displaying the element id, not the photo id, modal is being seat wrong
+  //(console.log("MODAL PHOTO ID: ", props.photoID))
   return (
 
     <div className="photo-details-modal">
@@ -50,7 +60,7 @@ const PhotoDetailsModal = (props) => {
            favouritedList={props.favouritedList}
            setFavouritedList={props.setFavoritedList}
            photoIsFavourited={props.photoIsFavorited}
-          //  setPhotoIsFavourited={props.setPhotoIsFavourited}
+           setPhotoIsFavourited={props.setPhotoIsFavourited}
            clickFavoritePhoto={props.clickFavoritePhoto}
         />
        
@@ -76,7 +86,7 @@ const PhotoDetailsModal = (props) => {
             setFavouritedList={props.setFavouritedList}
             setModal={props.setModal}
             modal={props.modal}
-            photos={similarPhotosList}
+            photos={similarPhotos}
             photoIsFavorited={props.photoIsFavorited}
             // setPhotoIsFavourited={props.setPhotoIsFavourited}
 

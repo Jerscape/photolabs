@@ -20,9 +20,11 @@ function useApplicationData() {
   //dispatch = reducer function?
   const initialState = {
     modal: 0,
+    photo: {},
     favouritedList: [],
     photoIsFavorited: false,
-    photoData: photos
+    photoData: [], //was originally from above photos. Compass exercise said to set it blank array []
+    topicData: []
   };
 
 
@@ -37,15 +39,16 @@ function useApplicationData() {
         return { ...state, favouritedList: [...state.favouritedList, action.id] };
       //is the state the selected photo or...the state of it being selected or not? 
       case ACTIONS.SELECT_PHOTO:
-        //modal is...0 or a photo id
-        return { ...state, modal: action.id};
+        //modal is...0 or a photo id//modal is set here...action id must be wrong...
+        return { ...state, modal: action.photo.id, photo: action.photo };
       case ACTIONS.UPDATE_MODAL:
         //THIS IS USED TO CLOSE THE MODAL PRIMARILY
-        return {...state, modal: 0}
+        return { ...state, modal: 0 };
       case ACTIONS.DISPLAY_PHOTO_DETAILS:
-        //sent photo data...photo data is the state?
+      //sent photo data...photo data is the state?
       case ACTIONS.SET_PHOTO_DATA:
-        return {...state, photoData: action.photoData};
+        return { ...state, photoData: action.payload };
+      // return {...state, photoData: action.photoData};
       default:
 
         return state;
@@ -55,10 +58,25 @@ function useApplicationData() {
 
   }
 
-  //remember to wrap toggle handler in a call back like favourites so we can control the argument
-  const toggleHandler = (id) => {
 
-    dispatch({ type: ACTIONS.SELECT_PHOTO, id:id });
+  //retreive photo data 
+
+  useEffect(() => {
+    fetch('http://localhost:8001/api/photos')
+      .then((res) => res.json())
+      .then((data) => dispatch({type: ACTIONS.SET_PHOTO_DATA, payload: data}))
+  }, []);
+
+
+
+  const setPhotoData = (photoData) => {
+    dispatch({ type: ACTIONS.SET_PHOTO_DATA, photoData: photoData });
+  };
+
+  //remember to wrap toggle handler in a call back like favourites so we can control the argument
+  const toggleHandler = (photo) => {
+    console.log("TH id valuef rom useAppData", photo) //this is wrong
+    dispatch({ type: ACTIONS.SELECT_PHOTO, photo });
     // setModal(id)
     // console.log("Id toggle handler",id)
     // console.log("toggle handler triggered")
@@ -73,13 +91,11 @@ function useApplicationData() {
   // helpers
   const closeHandler = () => {
     console.log("close handler triggered");
-    dispatch({type: ACTIONS.UPDATE_MODAL})
+    dispatch({ type: ACTIONS.UPDATE_MODAL });
 
   };
 
-  const setPhotoData = (photoData) => {
-    dispatch({type: ACTIONS.SET_PHOTO_DATA, photoData: photoData})
-  }
+
 
   //might need to refactor this state...?
   //const [photoIsFavorited, setPhotoIsFavourited] = useState(false);
@@ -101,14 +117,15 @@ function useApplicationData() {
     // console.log("modal state", props.modal)
   };
 
-console.log("UAD state.modal: ", state.modal)
+  console.log("UAD state.modal: ", state.modal);
 
   return {
     modal: state.modal,
-    setModal: state.setModal,
+    setModal: state.setModal,//wait, there is no set modal state in the state object....whaaat....
     favouritedList: state.favouritedList,
     photoData: state.photoData,
     setPhotoData,
+    photo: state.photo,
     //setFavouritedList: state,
     closeHandler,
     toggleHandler,
