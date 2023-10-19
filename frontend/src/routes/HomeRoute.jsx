@@ -10,7 +10,7 @@ import { click } from '@testing-library/user-event/dist/click';
 
 const HomeRoute = (props) => {
   // const [favouritedList, setFavouritedList] = useState([])
-  const {modal, setModal, favouritedList, setFavouritedList, photoIsFavorited, clickFavoritePhoto, toggleHandler, photos} = props
+  const {modal, setModal, favouritedList, setFavouritedList, photoIsFavorited, clickFavoritePhoto, toggleHandler, photos, apiTopics} = props
   //const {} = props
   // console.log("HOMEROUTE photo is favorited:", photoIsFavorited, 
   // // "set photo is favourited: ", setPhotoIsFavourited, 
@@ -24,6 +24,7 @@ const HomeRoute = (props) => {
       <TopNavigation
         favouritedList={favouritedList}
         setFavouritedList={setFavouritedList}
+        apiTopics={apiTopics}
       />
       <PhotoList 
          favouritedList={favouritedList}

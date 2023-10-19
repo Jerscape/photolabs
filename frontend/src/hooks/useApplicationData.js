@@ -1,5 +1,6 @@
 import { useEffect, useReducer } from "react";
 import photos from "mocks/photos";
+//import apiTopics from "mocks/topics"
 
 
 export const ACTIONS = {
@@ -48,6 +49,8 @@ function useApplicationData() {
       //sent photo data...photo data is the state?
       case ACTIONS.SET_PHOTO_DATA:
         return { ...state, photoData: action.payload };
+      case ACTIONS.SET_TOPIC_DATA:
+        return { ...state, topicData: action.payload };
       // return {...state, photoData: action.photoData};
       default:
 
@@ -64,18 +67,46 @@ function useApplicationData() {
   useEffect(() => {
     fetch('http://localhost:8001/api/photos')
       .then((res) => res.json())
-      .then((data) => dispatch({type: ACTIONS.SET_PHOTO_DATA, payload: data}))
+      .then((data) => dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data }));
   }, []);
-
-
 
   const setPhotoData = (photoData) => {
     dispatch({ type: ACTIONS.SET_PHOTO_DATA, photoData: photoData });
   };
 
+  //retreive and set topic data from api
+  useEffect(() => {
+    fetch('http://localhost:8001/api/topics')
+      .then((res) => res.json())
+      .then((data) => dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: data }));
+  }, []);
+
+  //SET TOPIC DATA BY ID
+    
+  //retreive and set topic data from api
+  // let topic_id = 1
+  // let pass = 'http://localhost:8001/api/topics/photos/' + topic_id
+  // useEffect(() => {
+  //   fetch(pass)
+  //   //fetch('http://localhost:8001/api/topics/photos/1')
+  //   //console.log(res)
+  //     .then((res) => {console.log(res.body)})
+  // }, []);
+
+  //SET TOPIC DATA BY ID
+  // useEffect(()=>{
+  //   fetch()
+  // })
+
+
+
+  // const setPhotoData = (photoData) => {
+  //   dispatch({ type: ACTIONS.SET_PHOTO_DATA, photoData: photoData });
+  // };
+
   //remember to wrap toggle handler in a call back like favourites so we can control the argument
   const toggleHandler = (photo) => {
-    console.log("TH id valuef rom useAppData", photo) //this is wrong
+
     dispatch({ type: ACTIONS.SELECT_PHOTO, photo });
     // setModal(id)
     // console.log("Id toggle handler",id)
@@ -90,7 +121,7 @@ function useApplicationData() {
 
   // helpers
   const closeHandler = () => {
-    console.log("close handler triggered");
+
     dispatch({ type: ACTIONS.UPDATE_MODAL });
 
   };
@@ -101,8 +132,7 @@ function useApplicationData() {
   //const [photoIsFavorited, setPhotoIsFavourited] = useState(false);
   const clickFavoritePhoto = (id) => {
     let newFavouriteList;
-    console.log("ARG:", id);
-    console.log("PHOTOFAV BUTTON PRESSED!");
+
     if (state.favouritedList.includes(id)) {
       dispatch({ type: ACTIONS.FAV_PHOTO_REMOVED, id: id });
       // newFavouriteList = favouritedList.filter(item => item !== id)
@@ -117,7 +147,7 @@ function useApplicationData() {
     // console.log("modal state", props.modal)
   };
 
-  console.log("UAD state.modal: ", state.modal);
+
 
   return {
     modal: state.modal,
@@ -130,6 +160,7 @@ function useApplicationData() {
     closeHandler,
     toggleHandler,
     clickFavoritePhoto,
+    apiTopics: state.topicData
     // photoIsFavorited,
     // setPhotoIsFavourited,
 

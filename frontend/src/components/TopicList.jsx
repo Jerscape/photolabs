@@ -5,9 +5,10 @@ import TopicListItem from "./TopicListItem";
 import mockTopics from "mocks/topics";
 //import PhotoListItem from "./PhotoListItem";
 
-const TopicList = () => {
+const TopicList = (props) => {
   //const topics = topics.map((topic)
-  const topics = mockTopics.map((topic) =>{
+  let apiTopics = props.apiTopics
+  const topics = apiTopics.map((topic) =>{
     return(
       <TopicListItem
         key={topic.id}

@@ -13,9 +13,9 @@ const PhotoListItem = (props) => {
   //console.log("PHOTOLIST ITEM photo is favourited: ", photoIsFavorited)
   return (
     <div className={"photo-list__item"} onClick={()=>{
-      console.log("id in toggle handler", id) //it's returning the element no the props.id when I click...what is goin gon
+      
       props.toggleHandler(item)
-      console.log("PHOTO CLICKED")
+     
     }}>
     <div>
     <PhotoFavButton

@@ -5,26 +5,26 @@ import closeSymbol from '../assets/closeSymbol.svg';
 
 import PhotoList from 'components/PhotoList';
 import PhotoListItem from 'components/PhotoListItem';
-import PhotoFavButton from 'components/PhotoFavButton'
+import PhotoFavButton from 'components/PhotoFavButton';
 import useApplicationData from 'hooks/useApplicationData';
 
 
 const PhotoDetailsModal = (props) => {
 
-  
+
   //const {modal, setModal, closeHandler, toggleHandler, clickFavoritePhoto, photoIsFavorited, setPhotoIsFavourited} = props;
 
 
   const photoID = props.modal;
-  console.log(props.modal)
+
   //this is a object of objects
   const similarPhotos = props.photo.similar_photos;
   // const similarPhotos = props.photos[photoID].similar_photos;
   //const similarPhotosList = Object.values(similarPhotos);
- const updatedSimilarPhotos = similarPhotos.map((item) => item.similar_photos = similarPhotos)
+  const updatedSimilarPhotos = similarPhotos.map((item) => item.similar_photos = similarPhotos);
 
   //console.log("PHOTOD_DETAIL_MODAL UPDATE Similar photos:", updatedSimilarPhotos)
-  console.log("PHOTOD_DETAIL_MODAL UPDATE Similar photos:", similarPhotos)
+
 
 
 
@@ -38,16 +38,15 @@ const PhotoDetailsModal = (props) => {
   const modalPhotoName = user.name;
   const modalPhotoUserName = user.username;
   const modalPhotoProfile = user.profile;
-  
-  console.log("modal details", props.modal) //this is displaying the element id, not the photo id, modal is being seat wrong
-  //(console.log("MODAL PHOTO ID: ", props.photoID))
+
+
   return (
 
     <div className="photo-details-modal">
       <button className="photo-details-modal__close-button">
         <img src={closeSymbol} alt="close symbol"
           onClick={() => {
-            console.log("close button clicked")
+            console.log("close button clicked");
             props.closeHandler();
 
           }}
@@ -56,14 +55,14 @@ const PhotoDetailsModal = (props) => {
       </button>
       <div className={'photo-details-modal__images'}>
         <PhotoFavButton
-           id={photoID}
-           favouritedList={props.favouritedList}
-           setFavouritedList={props.setFavoritedList}
-           photoIsFavourited={props.photoIsFavorited}
-           setPhotoIsFavourited={props.setPhotoIsFavourited}
-           clickFavoritePhoto={props.clickFavoritePhoto}
+          id={photoID}
+          favouritedList={props.favouritedList}
+          setFavouritedList={props.setFavoritedList}
+          photoIsFavourited={props.photoIsFavorited}
+          setPhotoIsFavourited={props.setPhotoIsFavourited}
+          clickFavoritePhoto={props.clickFavoritePhoto}
         />
-       
+
         <img src={modalPhotoImgSource} className={'photo-details-modal__image'} />
         <div className={'photo-details-modal__photographer-details'}>
 
