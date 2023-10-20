@@ -1,16 +1,18 @@
 import React from "react";
 
 import "../styles/TopicListItem.scss";
+import useApplicationData from "hooks/useApplicationData";
 
-// const sampleDataForTopicListItem = {
-//   id: "1",
-//   slug: "topic-1",
-//   label: "Nature",
-// };
 
 const TopicListItem = (props) => {
+
+  //const {clickTopicById} = useApplicationData()
+  //console.log("topic id on render: ", props.key)
   return (
-    <div className="topic-list__item" key={props.id}>
+    <div className="topic-list__item" key={props.id} onClick={()=>{
+      props.clickTopicById(props.id)
+    
+    }}>
       <h1>{props.title}</h1>
     </div>
   );

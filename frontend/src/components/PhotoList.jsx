@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 
 import "../styles/PhotoList.scss";
 import PhotoListItem from "./PhotoListItem";
@@ -8,6 +8,7 @@ import PhotoListItem from "./PhotoListItem";
 //console.log("id? ", photos[1].id)
 
 const PhotoList = (props) => {
+  console.log("PHOTOLIST props", props)
   // console.log('PHOTOLIST photoisfavourited:', props.photoIsFavorited)
   //const {modal, setModal, toggleHandler} = useApplicationData()
 
@@ -19,6 +20,10 @@ const PhotoList = (props) => {
 
 // }
   //console.log("PHOTO LIST toggle handler: ", props.toggleHandler)
+
+  // useEffect(()=>{
+  //   console.log("PhotoList: I am changed")
+  //   }, [props.photos])
 
   const photos = props.photos
 

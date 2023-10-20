@@ -1,5 +1,5 @@
 import { useEffect, useReducer } from "react";
-import photos from "mocks/photos";
+//import photos from "mocks/photos";
 //import apiTopics from "mocks/topics"
 
 
@@ -32,6 +32,7 @@ function useApplicationData() {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   function reducer(state, action) {
+    //console.log("ACTION", action)
     switch (action.type) {
       case ACTIONS.FAV_PHOTO_REMOVED:
         //..state is copying/retrieving the object, and favourited list is the key (to the right of the ":"" it is setting/updating the value)
@@ -48,12 +49,11 @@ function useApplicationData() {
       case ACTIONS.DISPLAY_PHOTO_DETAILS:
       //sent photo data...photo data is the state?
       case ACTIONS.SET_PHOTO_DATA:
-        return { ...state, photoData: action.payload };
+        return { ...state, photoData: action.payload};
       case ACTIONS.SET_TOPIC_DATA:
         return { ...state, topicData: action.payload };
       // return {...state, photoData: action.photoData};
       default:
-
         return state;
       // throw new Error(
       //   `Tried to reduce with unsupported action type: ${action.type}`
@@ -71,7 +71,7 @@ function useApplicationData() {
   }, []);
 
   const setPhotoData = (photoData) => {
-    dispatch({ type: ACTIONS.SET_PHOTO_DATA, photoData: photoData });
+    dispatch({ type: ACTIONS.SET_PHOTO_DATA, photoData: payload });
   };
 
   //retreive and set topic data from api
@@ -81,28 +81,21 @@ function useApplicationData() {
       .then((data) => dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: data }));
   }, []);
 
-  //SET TOPIC DATA BY ID
-    
-  //retreive and set topic data from api
-  // let topic_id = 1
-  // let pass = 'http://localhost:8001/api/topics/photos/' + topic_id
-  // useEffect(() => {
-  //   fetch(pass)
-  //   //fetch('http://localhost:8001/api/topics/photos/1')
-  //   //console.log(res)
-  //     .then((res) => {console.log(res.body)})
-  // }, []);
 
-  //SET TOPIC DATA BY ID
-  // useEffect(()=>{
-  //   fetch()
-  // })
-
-
-
-  // const setPhotoData = (photoData) => {
-  //   dispatch({ type: ACTIONS.SET_PHOTO_DATA, photoData: photoData });
-  // };
+const clickTopicById = (topic_id) => {
+  //let pass = 'http://localhost:8001/api/topics/photos/' + topic_id
+  let url = `http://localhost:8001/api/topics/photos/${topic_id}`
+  console.log("UAD: clickTopicById trigged with id:", topic_id)
+  fetch(url)
+  //console.log(res)
+    //.then((res) => {console.log(res.body)})
+    //.then((res) => dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: res }))
+    // .then((res)=>res.json())
+    // .then((res) => console.log(res))
+    // .then((res) => dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: res }))
+    .then((res)=>res.json())
+    .then((data) => dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data }))
+}
 
   //remember to wrap toggle handler in a call back like favourites so we can control the argument
   const toggleHandler = (photo) => {
@@ -150,6 +143,7 @@ function useApplicationData() {
 
 
   return {
+    state,
     modal: state.modal,
     setModal: state.setModal,//wait, there is no set modal state in the state object....whaaat....
     favouritedList: state.favouritedList,
@@ -160,7 +154,8 @@ function useApplicationData() {
     closeHandler,
     toggleHandler,
     clickFavoritePhoto,
-    apiTopics: state.topicData
+    apiTopics: state.topicData,
+    clickTopicById
     // photoIsFavorited,
     // setPhotoIsFavourited,
 
