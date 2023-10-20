@@ -87,80 +87,50 @@ const clickTopicById = (topic_id) => {
   let url = `http://localhost:8001/api/topics/photos/${topic_id}`
   console.log("UAD: clickTopicById trigged with id:", topic_id)
   fetch(url)
-  //console.log(res)
-    //.then((res) => {console.log(res.body)})
-    //.then((res) => dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: res }))
-    // .then((res)=>res.json())
-    // .then((res) => console.log(res))
-    // .then((res) => dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: res }))
     .then((res)=>res.json())
     .then((data) => dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data }))
 }
 
-  //remember to wrap toggle handler in a call back like favourites so we can control the argument
   const toggleHandler = (photo) => {
-
+    
     dispatch({ type: ACTIONS.SELECT_PHOTO, photo });
-    // setModal(id)
-    // console.log("Id toggle handler",id)
-    // console.log("toggle handler triggered")
 
   };
 
-  // const [modal, setModal] = useState(0);
-  // const [favouritedList, setFavouritedList] = useState([])
-  // const [photoIsFavorited, setPhotoIsFavourited] = useState(false);
-
-
-  // helpers
   const closeHandler = () => {
 
     dispatch({ type: ACTIONS.UPDATE_MODAL });
 
   };
 
-
-
-  //might need to refactor this state...?
-  //const [photoIsFavorited, setPhotoIsFavourited] = useState(false);
   const clickFavoritePhoto = (id) => {
     let newFavouriteList;
 
     if (state.favouritedList.includes(id)) {
       dispatch({ type: ACTIONS.FAV_PHOTO_REMOVED, id: id });
-      // newFavouriteList = favouritedList.filter(item => item !== id)
 
     } else {
       dispatch({ type: ACTIONS.FAV_PHOTO_ADDED, id: id });
-      // newFavouriteList = [...favouritedList, id]
-
     }
-    // setFavouritedList(newFavouriteList)
-    // console.log("props id: ", id)
-    // console.log("modal state", props.modal)
   };
 
 
 
   return {
-    state,
+
     modal: state.modal,
-    setModal: state.setModal,//wait, there is no set modal state in the state object....whaaat....
     favouritedList: state.favouritedList,
     photoData: state.photoData,
-    setPhotoData,
     photo: state.photo,
-    //setFavouritedList: state,
+    apiTopics: state.topicData,
+
+    setPhotoData,
     closeHandler,
     toggleHandler,
     clickFavoritePhoto,
-    apiTopics: state.topicData,
     clickTopicById
-    // photoIsFavorited,
-    // setPhotoIsFavourited,
 
   };
 }
-
 
 export default useApplicationData;

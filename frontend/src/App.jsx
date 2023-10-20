@@ -11,7 +11,7 @@ import HomeRoute from 'routes/HomeRoute';
 import useApplicationData from 'hooks/useApplicationData';
 
 
-
+//APP COMPONENT
 const App = () => {
   
   //DESTRUCTURING PROPS
@@ -32,6 +32,8 @@ const App = () => {
         apiTopics={apiTopics}
         clickTopicById={clickTopicById}
       />
+
+      {/* modal visibility depedent on modal state being 0 (hidden), or greater than 0 (visible) */}
       {modal && <PhotoDetailsModal 
        
          photos={photoData}
