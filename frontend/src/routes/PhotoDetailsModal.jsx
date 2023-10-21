@@ -12,26 +12,11 @@ import useApplicationData from 'hooks/useApplicationData';
 const PhotoDetailsModal = (props) => {
 
 
-  //const {modal, setModal, closeHandler, toggleHandler, clickFavoritePhoto, photoIsFavorited, setPhotoIsFavourited} = props;
-
-
   const photoID = props.modal;
-
-  //this is a object of objects
   const similarPhotos = props.photo.similar_photos;
-  // const similarPhotos = props.photos[photoID].similar_photos;
-  //const similarPhotosList = Object.values(similarPhotos);
   const updatedSimilarPhotos = similarPhotos.map((item) => item.similar_photos = similarPhotos);
-
-  //console.log("PHOTOD_DETAIL_MODAL UPDATE Similar photos:", updatedSimilarPhotos)
-
-
-
-
-
   const modalPhoto = props.photo;
   const modalPhotoImgSource = modalPhoto.urls.regular;
-
   const { location, user } = modalPhoto;
   const modalPhotoCity = location.city;
   const modalPhotoCountry = location.country;
@@ -87,8 +72,6 @@ const PhotoDetailsModal = (props) => {
             modal={props.modal}
             photos={similarPhotos}
             photoIsFavorited={props.photoIsFavorited}
-            // setPhotoIsFavourited={props.setPhotoIsFavourited}
-
             clickFavoritePhoto={props.clickFavoritePhoto}
             toggleHandler={props.toggleHandler}
           />
