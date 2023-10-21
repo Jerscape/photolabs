@@ -1,7 +1,7 @@
 import React from "react";
 
 import "../styles/TopicListItem.scss";
-import useApplicationData from "hooks/useApplicationData";
+
 
 //TOPIC LIST ITEM COMPONENT
 const TopicListItem = (props) => {

@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 
 import "../styles/TopicList.scss";
 import TopicListItem from "./TopicListItem";
-import mockTopics from "mocks/topics";
 
 const TopicList = (props) => {
 

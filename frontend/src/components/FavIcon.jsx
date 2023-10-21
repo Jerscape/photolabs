@@ -12,7 +12,7 @@ export function FavIcon({
   displayAlert,
 }) {
   return (
-    <svg //className="photo-list__fav-icon-svg"
+    <svg 
       width={width}
       height={height}
       viewBox="0 0 24 19"
