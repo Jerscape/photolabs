@@ -4,28 +4,8 @@ import FavIcon from './FavIcon';
 import '../styles/PhotoFavButton.scss';
 
 function PhotoFavButton(props) {
-const {id, favouritedList, setFavouritedList, clickFavoritePhoto, photoIsFavorited, 
-  // setPhotoIsFavourited
-} = props
-// console.log("fav button setPhotoFavourited: ", setPhotoIsFavourited)
-// console.log("PHOTO FAV BUTTON, photo is favourited", photoIsFavorited)
-// const [photoIsFavorited, setPhotoIsFavourited] = useState(false)
+const {id, favouritedList, setFavouritedList, clickFavoritePhoto, photoIsFavorited} = props
 
-
-  // useEffect(()=>{
-  //   if(favouritedList.includes(id)){
-
-  //     setPhotoIsFavourited(true)
-  //   } else {
-  //     setPhotoIsFavourited(false)
-  //   }
-  // }, [favouritedList])
-
-  // useEffect(()=>{
-  //   // console.log("AAA", photoIsFavorited)
-  // }, [photoIsFavorited])
- 
-  // console.log("Photo is favourited", photoIsFavorited)
   return (
     <div className="photo-list__fav-icon" onClick={()=>{
 

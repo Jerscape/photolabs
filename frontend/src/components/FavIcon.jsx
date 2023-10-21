@@ -1,5 +1,5 @@
 
-//code provided by Ngo
+//code provided by mentor Ngo
 
 import React from "react";
 
@@ -12,7 +12,7 @@ export function FavIcon({
   displayAlert,
 }) {
   return (
-    <svg
+     <svg //className="photo-list__fav-icon-svg"
       width={width}
       height={height}
       viewBox="0 0 24 19"
@@ -52,7 +52,7 @@ FavIcon.defaultProps = {
 export default FavIcon;
 
 
-
+//Original?
 // import React from 'react';
 
 // const FavIcon = ({displayAlert, selected, fill, stroke}) => {
