@@ -4,6 +4,7 @@ import '../styles/TopNavigationBar.scss';
 import TopicList from './TopicList';
 import FavBadge from './FavBadge';
 
+//TOP NAVIGATION COMPONENT
 const TopNavigation = (props) => {
 
   const { favouritedList } = props;

@@ -2,51 +2,24 @@ import React, {useEffect} from "react";
 
 import "../styles/PhotoList.scss";
 import PhotoListItem from "./PhotoListItem";
-//import useApplicationData from "hooks/useApplicationData";
-//import photos from "mocks/photos";
 
-//console.log("id? ", photos[1].id)
-
+//PHOTOLIST COMPONENT
 const PhotoList = (props) => {
   console.log("PHOTOLIST props", props)
-  // console.log('PHOTOLIST photoisfavourited:', props.photoIsFavorited)
-  //const {modal, setModal, toggleHandler} = useApplicationData()
 
-//   const toggleHandler = (id) => {
-
-//   setModal(id)
-//   console.log("Id toggle handler",id)
-//   console.log("toggle handler triggered")
-
-// }
-  //console.log("PHOTO LIST toggle handler: ", props.toggleHandler)
-
-  // useEffect(()=>{
-  //   console.log("PhotoList: I am changed")
-  //   }, [props.photos])
 
   const photos = props.photos
 
   const photoItems = photos.map((item) =>{
 
-    //const [urls, user] = photos
-    //console.log("Logging item.id from map", item.id)//(seems to be pulling the correct id)
-   
-    // console.log("PHOTOLIST PROPS:", props)
     return(
       <li key={item.id}>
       <PhotoListItem
-      
-      //key={item.id}
-      //I think this is breaking it because when I click on a photo
-      //it is set up to save state (but in photolist it sets id via interatino
-      //through the array)
       
       id={item.id}
       favouritedList={props.favouritedList}
       setFavouritedList={props.setFavouritedList}
       photoIsFavorited={props.photoIsFavorited}
-      // setPhotoIsFavourited={props.setPhotoIsFavourited}
      
       imageSource={item.urls.regular}
 
@@ -61,10 +34,8 @@ const PhotoList = (props) => {
       toggleHandler={props.toggleHandler}
       item={item}
 
-      
       />
       </li>
-
 
     )
   })

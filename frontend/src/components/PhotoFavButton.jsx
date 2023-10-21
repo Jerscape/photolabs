@@ -11,7 +11,6 @@ const {id, favouritedList, setFavouritedList, clickFavoritePhoto, photoIsFavorit
 
       props.clickFavoritePhoto(id)
 
-      // console.log("PHOTO CLICKED")
     }}>
       <div className="photo-list__fav-icon-svg">
       <FavIcon
